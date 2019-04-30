@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+<body>
+	<div ng-show="pendingBlogs== null">No pending blogs</div>
+	<div class="container">
+		<h2>Pending Blogs</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Blog Id</th>
+					<th>Blog Name</th>
+					<th>Blog Author</th>
+					<th colspan="2">Operation</th>
+				</tr>
+			</thead>
+
+			<tbody>
+
+				<tr ng-repeat="blog in pendingBlogs">
+					<td><a href="#!blogDetails/{{blog.blogsId}}">{{blog.blogsId}}</a></td>
+					<td><a href="#!blogDetails/{{blog.blogsId}}">{{blog.blogName}}</a></td>
+					<td><a href="">{{blog.userName}}</a></td>
+
+					<td><button type="button" ng-click="approveBlog(blog.blogsId)"
+							class="btn btn-success btn-sm a-btn-slide-text">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							<span><strong>Approve</strong></span>
+						</button></td>
+					<td><button type="button" ng-click="rejectBlog(blog.blogsId)"
+							class="btn btn-danger btn-sm a-btn-slide-text">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							<span><strong>Reject</strong></span>
+						</button></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+</body>
+</html>

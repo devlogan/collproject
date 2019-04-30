@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="ISO-8859-1">
+<title>My Blogs</title>
+</head>
+<!--  <style>
+* {
+	color: white;
+}
+</style>-->
+<script>
+	
+</script>
+<body>
+	<div class="container" ng-init="getMyblogs()">
+		<div ng-show="myBlogs.length==0">
+			<h4>you have no blogs</h4>
+		</div>
+		<div ng-repeat="blog in myBlogs" style="margin-top: 30px">
+
+
+			<h4>
+				<a href="#!blogDetails/{{blog.blogsId}}">{{blog.blogName}}</a>
+			</h4>
+			<h6>Posted By: {{blog.userName}}</h6>
+			<span>{{blog.date}}</span>
+			<h6 style="color: orange; !important">{{blog.approved}}</h6>
+
+			<div>
+				<a href=""><i class="fa fa-thumbs-up"></i></a><span
+					style="margin-right: 8px;">{{blog.likes}}</span><a href=""><i
+					class="fa fa-thumbs-down"></i></a><span>{{blog.dislikes}}</span>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
