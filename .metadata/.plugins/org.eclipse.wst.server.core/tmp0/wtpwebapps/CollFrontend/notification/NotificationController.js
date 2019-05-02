@@ -1,4 +1,4 @@
-app.controller('NotificationCtrl',function($scope,NotificationService,$location){
+app.controller('NotificationCtrl',function($scope,NotificationService,$location,$rootScope){
 
 	console.log("Im inside Notification Controller");
 
@@ -8,8 +8,10 @@ app.controller('NotificationCtrl',function($scope,NotificationService,$location)
 		then(function(response){
 
 			console.log("fetched all the notifications");
-			$scope.notifications=response.data;
-			console.log($scope.notifications);
+			$rootScope.notifications=response.data;
+			$rootScope.notificationCount=$rootScope.notifications.length;
+			$cookieStore.put('notificationDetails',response.data);
+			$cookieStore.put('notificationCounts',$rootScope.notifications.length);
 
 		},function(response){
 
@@ -19,9 +21,9 @@ app.controller('NotificationCtrl',function($scope,NotificationService,$location)
 		}
 		)}
 
-	$scope.updateNotification=function(){
+	$scope.updateNotification=function(notId){
 
-		NotificationService.updateNotification().
+		NotificationService.updateNotification(notId).
 		then(function(response){
 
 			console.log('updated notification');
@@ -29,7 +31,6 @@ app.controller('NotificationCtrl',function($scope,NotificationService,$location)
 
 		},function(response){
 
-			console.log('could not update');
 			$scope.getMyNotifications();
 
 		}

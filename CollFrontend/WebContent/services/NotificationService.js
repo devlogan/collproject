@@ -8,7 +8,7 @@ app.factory('NotificationService',function($http){
 	}
 
 	notificationService.updateNotification=function(notId){
-		return $http.get(SERVER_URL+"/updateNotification?notificationId="+notId);
+		return $http.post(SERVER_URL+"/updateNotification?notificationId="+notId);
 	}
 
 	return notificationService;

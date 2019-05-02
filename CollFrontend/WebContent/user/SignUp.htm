@@ -44,10 +44,6 @@ i.fa-close {
 body {
 	background: -webkit-linear-gradient(left, #3931af, #00c6ff);
 }
-
-.error-message {
-	color: red;
-}
 </style>
 <div class="container">
 
@@ -61,7 +57,7 @@ body {
 			<form name="myForm" novalidate>
 				<div class="error-message"
 					ng-show="myForm.firstName.$invalid && myForm.firstName.$touched">First
-					Name is Required</div>
+					Name is Required(only ch.)</div>
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-user"></i>
@@ -69,16 +65,17 @@ body {
 					</div>
 					<input name="firstName" class="form-control"
 						placeholder="First name" type="text" ng-model="user.firstName"
-						ng-required="true" ng-minlength="3"><i
-						ng-show="myForm.firstName.$valid" class="fa fa-check"></i><i
-						ng-show="myForm.firstName.$invalid && myForm.password.$touched"
+						ng-required="true" ng-pattern="/^[A-Z]+$/i" ng-minlength="3"
+						ng-maxlength="21"><i ng-show="myForm.firstName.$valid"
+						class="fa fa-check"></i><i
+						ng-show="myForm.firstName.$invalid && myForm.firstName.$touched || myForm.firstName.$error.pattern && myForm.firstName.$touched"
 						class="fa fa-close"></i>
 				</div>
 
 
 				<div class="error-message"
 					ng-show="myForm.lastName.$invalid && myForm.lastName.$touched">Last
-					Name is Required</div>
+					Name is Required(only ch.)</div>
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-user"></i>
@@ -86,9 +83,9 @@ body {
 					</div>
 					<input name="lastName" class="form-control" placeholder="Last name"
 						type="text" ng-model="user.lastName" ng-required="true"
-						ng-minlength="3"><i ng-show="myForm.lastName.$valid"
-						class="fa fa-check"></i><i
-						ng-show="myForm.lastName.$invalid && myForm.password.$touched"
+						ng-pattern="/^[A-Z]+$/i" ng-minlength="3" ng-maxlength="21"><i
+						ng-show="myForm.lastName.$valid" class="fa fa-check"></i><i
+						ng-show="myForm.lastName.$invalid && myForm.lastName.$touched || myForm.lastName.$error.pattern && myForm.lastName.$touched"
 						class="fa fa-close"></i>
 				</div>
 				<div class="error-message"
@@ -103,15 +100,16 @@ body {
 						placeholder="Email address" type="email" ng-model="user.email"
 						ng-required="true"><i ng-show="myForm.email.$valid"
 						class="fa fa-check"></i><i
-						ng-show="myForm.email.$invalid && myForm.password.$touched"
+						ng-show="myForm.email.$invalid && myForm.email.$touched"
 						class="fa fa-close"></i>
 				</div>
 				<!-- form-group// -->
 				<div class="error-message"
 					ng-show="myForm.phone.$invalid && myForm.phone.$touched">Phone
 					Number is Required</div>
-					<div class="error-message"
-					ng-show="myForm.phone.$error.pattern && myForm.phone.$touched">Enter a 10 digit number</div>
+				<div class="error-message"
+					ng-show="myForm.phone.$error.pattern && myForm.phone.$touched">Enter
+					a 10 digit number</div>
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-phone"></i>
@@ -122,7 +120,7 @@ body {
 						type="text" ng-model="user.mobileNo" ng-required="true"
 						ng-pattern="/^\d{10}$/"><i ng-show="myForm.phone.$valid"
 						class="fa fa-check"></i><i
-						ng-show="myForm.phone.$invalid && myForm.password.$touched"
+						ng-show="myForm.phone.$invalid && myForm.phone.$touched"
 						class="fa fa-close"></i>
 				</div>
 				<!-- form-group// -->

@@ -12,16 +12,20 @@ app.controller("blogOperCtrl",function($scope,$http,$rootScope,$cookieStore,$loc
 
 	$scope.addComment=function(blogId,commentTxt){
 
+
 		$scope.blogComment={}
 		$scope.blogComment.comment=commentTxt;
+		document.getElementById("blogComment").value="";
 		console.log($scope.blogComment);
 		console.log($scope.blogComment.comment);
 		BlogService.addComment(blogId,$scope.blogComment)
 		.then(
 				function(response)
 				{
+					commentTxt="";
 					$scope.blogComment=response.data;
 					$scope.getAllBlogComments(blogId);
+
 
 				},
 				function(response)
@@ -63,22 +67,23 @@ app.controller("blogOperCtrl",function($scope,$http,$rootScope,$cookieStore,$loc
 
 
 
+	if(blogId!=undefined){
+		BlogService.blogDetails(blogId)
+		.then(
+				function(response)
+				{
+					$scope.blog=response.data;
 
-	BlogService.blogDetails(blogId)
-	.then(
-			function(response)
-			{
-				$scope.blog=response.data;
-
-			},
-			function(response)
-			{
-				if(response.status==401)
-					$location('/login')
-			})
+				},
+				function(response)
+				{
+					if(response.status==401)
+						$location('/login')
+				})
+	}
 
 
-			$scope.getBlogsApproved=function(){
+	$scope.getBlogsApproved=function(){
 		console.log("fetching approved blogs");
 		BlogService.getBlogsApproved()
 		.then(
@@ -201,12 +206,12 @@ app.controller("blogOperCtrl",function($scope,$http,$rootScope,$cookieStore,$loc
 				function(response){
 					$scope.message=response.data;
 					console.log($scope.message);
-					console.log("Blog Liked Successfully");
-					$route.reload();	
+
 					//$location.path('/allBlogs')
 				},
 				function(response){
-					console.log("could not like blog");
+					console.log("Blog Liked Successfully");
+					$route.reload();
 					if(response.status==401)
 						$location.path('/login')
 				})
@@ -216,11 +221,14 @@ app.controller("blogOperCtrl",function($scope,$http,$rootScope,$cookieStore,$loc
 		BlogService.dislikeBlog(blogId)
 		.then(
 				function(response){
-					console.log("blog disliked successfully");
-					$route.reload();	
+					$scope.message=response.data;
+					console.log($scope.message);
+
 
 				},
 				function(response){
+					console.log("blog disliked successfully");
+					$route.reload();
 					if(response.status==401)
 						$location.path('/login')
 				})

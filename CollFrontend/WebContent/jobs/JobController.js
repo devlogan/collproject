@@ -1,5 +1,7 @@
 app.controller('JobCtrl',function($scope,JobService,$location)
 		{
+	$scope.show=false;
+
 
 	console.log("I am Job Controller");
 	$scope.show=false;
@@ -33,6 +35,7 @@ app.controller('JobCtrl',function($scope,JobService,$location)
 
 			$scope.showDetails=function(jobId)
 			{
+		console.log(jobId);
 		$scope.show=!$scope.show
 		$scope.jobId=jobId
 			}

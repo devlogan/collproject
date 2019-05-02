@@ -9,6 +9,7 @@ app.controller('FriendCtrl',function($scope,FriendService,$location){
 				function(response){
 					console.log("retrieved suggested users");
 					$scope.suggestedUsers=response.data;
+					console.log($scope.suggestedUsers);
 
 				},function(response){
 

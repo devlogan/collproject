@@ -42,8 +42,9 @@ public class NotificationController {
 		System.out.println("updating notification");
 		Notification notification=notificationDao.getNotificationById(notificationId);
 		notification.setStatus("Viewed");
+		boolean r= notificationDao.addOrUpdateNotification(notification);
 
-		if(notificationDao.addOrUpdateNotification(notification)) {
+		if(r) {
 
 			return new ResponseEntity<String>("Successful",HttpStatus.OK);
 		}

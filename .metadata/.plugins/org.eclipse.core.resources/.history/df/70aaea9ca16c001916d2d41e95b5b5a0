@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Homepage</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-md-4">
+			<h1>Blogs</h1>
+		</div>
+		<div class="col-md-4">
+			<h1>Jobs</h1>
+		</div>
+		<div class="col-md-4">
+			<h1>Chat With Others</h1>
+		</div>
+
+	</div>
+
+
+
+</body>
+</html>

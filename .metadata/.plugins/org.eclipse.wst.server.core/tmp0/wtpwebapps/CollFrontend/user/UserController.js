@@ -5,7 +5,6 @@ app.controller("userCtrl",function($scope,$http,$rootScope,$cookieStore,$locatio
 	$scope.user={"email":"","password":"","username":"","firstName":"","lastName":"","mobileNo":"","role":"","online":""};
 	//$scope.userProfile={"email":"","username":"","firstName":"","lastName":"","mobileNo":"","role":"","online":""};
 
-
 	$scope.registerUser=function(){
 		console.log("I m Registering User");
 		console.log($scope.user);
@@ -43,7 +42,9 @@ app.controller("userCtrl",function($scope,$http,$rootScope,$cookieStore,$locatio
 
 						console.log("fetched all the notifications");
 						$rootScope.notifications=response.data;
-						$rootScope.notificationCount=$scope.notifications.length;
+						$rootScope.notificationCount=$rootScope.notifications.length;
+						$cookieStore.put('notificationDetails',response.data);
+						$cookieStore.put('notificationCounts',$rootScope.notifications.length);
 						console.log($rootScope.notifications);
 						console.log($rootScope.notificationCount);
 
@@ -59,7 +60,7 @@ app.controller("userCtrl",function($scope,$http,$rootScope,$cookieStore,$locatio
 					$location.path("userHome");
 				},function(response){
 
-					alert("User is invalid");
+					alert("could not connect to the server");
 					$scope.error=response.data;
 				}).catch(function(e){
 					console.log("service is not completed error: ", e );
@@ -125,30 +126,6 @@ app.controller("userCtrl",function($scope,$http,$rootScope,$cookieStore,$locatio
 				});
 	};
 
-	$scope.fetchingImage=function(){
-
-		console.log("http://localhost:8574/CollMiddleware/getimage?email="+$rootScope.currentUser.email);
-		$http.get("http://localhost:8574/CollMiddleware/getimage?email="+$rootScope.currentUser.email)
-		.then(
-				function(response){
-					$rootScope.profilePicture=response.data;
-					console.log("fetched image");
-					console.log($rootScope.profilePicture);
-
-					$route.reload();
-					// $window.location.reload();				
-
-				},function(response){
-					$scope.error=response.data;
-					console.log($scope.error);
-				}	
-
-
-
-		)
-
-
-	}
 
 
 

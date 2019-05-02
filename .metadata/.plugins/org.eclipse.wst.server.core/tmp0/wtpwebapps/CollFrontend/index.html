@@ -42,6 +42,23 @@
 
 <script src="js//sockjs//sock.js" defer></script>
 <script src="js//stompjs//stomp.js" defer></script>
+<script async>
+	var changeFriend = function(id) {
+		if (id != null)
+			console.log(id);
+		document.getElementById(id).src = "https://sophosnews.files.wordpress.com/2014/04/anonymous-250.jpg";
+	}
+	var changeSuggested = function(id) {
+
+		document.getElementById(id).src = "https://sophosnews.files.wordpress.com/2014/04/anonymous-250.jpg";
+
+	}
+	var pending = function(id) {
+
+		document.getElementById(id).src = "https://sophosnews.files.wordpress.com/2014/04/anonymous-250.jpg";
+
+	}
+</script>
 <style>
 .list-notificacao {
 	min-width: 400px;
@@ -132,6 +149,9 @@
 	color: green;
 }
 
+.error-message {
+	color: red;
+}
 </style>
 <script>
 	function excluirItemNotificacao(e) {
@@ -142,9 +162,11 @@
 		return true;
 	}
 </script>
+<title>BugsKiller</title>
 </head>
 
 <body ng-app="app">
+
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-primary"
 		style="background: #c5dcdd !important;">
@@ -204,14 +226,11 @@
 						<a class="dropdown-item dropdown-options" href="#!allBlogs">Pending
 							Blogs</a> <a class="dropdown-item dropdown-options"
 							href="#!viewBlogs" ng-click="">Approved Blogs</a> <a
-							class="dropdown-item dropdown-options" href=""
-							ng-click="getBlogsPending()">View Forums</a> <a
 							class="dropdown-item dropdown-options" href="#!addJob">Add a
 							job</a>
 					</div></li>
 
-				<li class="nav-item"><a class="nav-link" href="#">About
-						Us</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="#">Contact
 						Us</a></li>
@@ -219,17 +238,20 @@
 					class="nav-link" href="#!chat">Chat </a></li>
 
 
-				<li class="dropdown noti-dropdown"><a href="#"
-					class="notification-button" data-toggle="dropdown" role="button"
-					aria-haspopup="true" aria-expanded="false"><i
+				<li class="dropdown noti-dropdown"
+					ng-show="currentUser.role=='User'" ng-controller="NotificationCtrl"><a
+					href="" class="notification-button" data-toggle="dropdown"
+					role="button" aria-haspopup="true" aria-expanded="false"><i
 						class="fa fa-bell" style="display: inline-block;"
 						aria-hidden="true"></i> <span class='notification-count	'>{{notificationCount}}</span></a>
 					<ul class="list-notificacao dropdown-menu">
+						<li><p ng-show="notificationCount==0"
+								style="font-size: 1rem;">You don't have any notifications</p></li>
 						<li id='item_notification_1'
 							ng-repeat="notification in notifications">
 							<div class="media">
 								<div class="media-left">
-									<a href="#"> <img
+									<a href=""> <img
 										src="http://localhost:8574/CollMiddleware/getimage?email={{notification.fromUser.email}}"
 										onerror="this.src='https://sophosnews.files.wordpress.com/2014/04/anonymous-250.jpg'">
 									</a>
@@ -237,7 +259,7 @@
 								<div class="media-body">
 									<div class='exclusaoNotificacao'>
 										<button class='btn btn-danger btn-xs button_exclusao'
-											ng-click='excluirItemNotificacao(this)'>x</button>
+											ng-click='updateNotification(notification.notificationId)'>x</button>
 									</div>
 
 									<p>
@@ -245,9 +267,7 @@
 											{{notifications.fromUser.lastName}} has sent you a friend
 											request</a>
 									</p>
-									<p ng-hide="notifications.length">
-									You have no notifications
-									</p>
+
 								</div>
 							</div>
 						</li>

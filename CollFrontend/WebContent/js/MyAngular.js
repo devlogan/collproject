@@ -74,6 +74,8 @@ app.config(function($routeProvider) {
 
 });
 
+
+
 app.run(function($rootScope,$cookieStore,$http){
 
 	console.log('run function of app module')
@@ -91,6 +93,10 @@ app.run(function($rootScope,$cookieStore,$http){
 	}*/
 	if($rootScope.currentUser==undefined){
 		$rootScope.currentUser=$cookieStore.get('userDetails');
+	}
+	if($rootScope.notification==undefined){
+		$rootScope.notification=$cookieStore.get('notificationDetails');
+		$rootScope.notificationCount=$cookieStore.get('notificationCounts');
 	}
 	else{
 

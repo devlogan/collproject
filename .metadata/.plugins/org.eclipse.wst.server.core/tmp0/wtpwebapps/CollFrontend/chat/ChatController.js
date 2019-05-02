@@ -1,5 +1,7 @@
 app.controller('ChatCtrl',function($rootScope,$scope,ChatService){
-	$scope.stompClient=ChatService.stompClient
+	console.log("Inside Chat controller");
+	$scope.stompClient=ChatService.stompClient;
+	$scope.userName=$rootScope.currentUser.firstName;
 	$scope.users=[];
 	$scope.chats=[];
 
@@ -16,6 +18,7 @@ app.controller('ChatCtrl',function($rootScope,$scope,ChatService){
 		})
 
 		$scope.stompClient.subscribe("/topic/join",function(message){
+			console.log(message);
 			user=JSON.parse(message.body);
 			if(user != $scope.userName && $.inArray(user, $scope.users) == -1){
 				$scope.addUser(user);
@@ -39,6 +42,7 @@ app.controller('ChatCtrl',function($rootScope,$scope,ChatService){
 		$scope.chat.message=''
 	}
 
+
 	$scope.$on('sockConnected',function(event,frame){
 
 		$scope.userName=$rootScope.currentUser.firstName;
@@ -55,10 +59,11 @@ app.controller('ChatCtrl',function($rootScope,$scope,ChatService){
 	})
 
 	$scope.processIncomingMessage=function(message,broadcast){
-		message=JSON.parse(message.body)//message.body is chat object
-		message.direction='incoming'
-			if(message.from!=$scope.userName){
-				$scope.addChat(message);
+		chat=JSON.parse(message.body)//message.body is chat object
+		chat.direction='incoming'
+			chat.broadcast=broadcast
+			if(chat.from!=$scope.userName){
+				$scope.addChat(chat);
 				$scope.$apply();
 			}
 	}

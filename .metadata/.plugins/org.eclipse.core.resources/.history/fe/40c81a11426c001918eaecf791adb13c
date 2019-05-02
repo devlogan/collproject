@@ -1,0 +1,26 @@
+var changeFriend = function(id) {
+
+document.getElementById(id).children[2].src =
+"https://sophosnews.files.wordpress.com/2014/04/anonymous-250.jpg" }
+<div class="container">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h4 style="text-align: center; font-size: 2em;">Friends</h4>
+		</div>
+		<div class="panel-body" ng-init="getAllFriends()">
+			<ul style="list-style: none">
+				<li id="{{$index}}" ng-repeat="friend in friends">{{friend.email}}<br>
+					{{friend.firstName}}&nbsp;{{friend.lastName}}<br>
+					{{friend.phonenumber}}<br> <img
+					src="http://localhost:8574/CollMiddleware/getimage?email={{friend.email}}"
+					alt="No Image" height="60px" width="60px"
+					onerror="changeFriend(id)">
+					<div>{{friend.email}}</div> <br>
+
+					<hr>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+</div>
