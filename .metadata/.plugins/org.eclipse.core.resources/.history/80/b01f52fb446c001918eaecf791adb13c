@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-cookies.js"></script>
+<script src="js//MyAngular.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="user//UserController.js"></script>
+<script src="blog//BlogController.js" defer></script>
+<script src="services/BlogService.js" defer></script>
+<script src="services/JobService.js" defer></script>
+<script src="services/FriendService.js" defer></script>
+<script src="blog//BlogOperationController.js" defer></script>
+<script src="jobs//JobController.js" defer></script>
+<script src="friend//FriendController.js" defer></script>
+<script src="chat//ChatController.js" defer></script>
+<script src="services//ChatService.js" defer></script>
+<script src="notification//NotificationController.js" defer></script>
+<script src="services//NotificationService.js" defer></script>
+
+<script src="js//sockjs//sock.js" defer></script>
+<script src="js//stompjs//stomp.js" defer></script>
+<script>
+	var changeFriend = function(id) {
+		if(id!=null)
+		document.getElementById(id).src = "https://sophosnews.files.wordpress.com/2014/04/anonymous-250.jpg";
+	}
+	var changeSuggested = function(id) {
+
+		document.getElementById(id).src = "https://sophosnews.files.wordpress.com/2014/04/anonymous-250.jpg";
+
+	}
+	var pending = function(id) {
+
+		document.getElementById(id).src = "https://sophosnews.files.wordpress.com/2014/04/anonymous-250.jpg";
+
+	}
+</script>
+<style>
+.list-notificacao {
+	min-width: 400px;
+	background: #ffffff;
+}
+
+.list-notificacao li {
+	border-bottom: 1px #d8d8d8 solid;
+	text-align: justify;
+	padding: 5px 10px 5px 10px;
+	cursor: pointer;
+	font-size: 12px;
+}
+
+.list-notificacao li:hover {
+	background: #f1eeee;
+}
+
+.list-notificacao li:hover .exclusaoNotificacao {
+	display: block;
+}
+
+.list-notificacao li  p {
+	color: black;
+	width: 305px;
+}
+
+.list-notificacao li .exclusaoNotificacao {
+	width: 25px;
+	min-height: 40px;
+	position: absolute;
+	right: 0;
+	display: none;
+}
+
+.list-notificacao .media img {
+	width: 40px;
+	height: 40px;
+	float: left;
+	margin-right: 10px;
+}
+
+.badgeAlert {
+	display: inline-block;
+	min-width: 10px;
+	padding: 3px 7px;
+	font-size: 12px;
+	font-weight: 700;
+	color: #fff;
+	line-height: 1;
+	vertical-align: baseline;
+	white-space: nowrap;
+	text-align: center;
+	background-color: #d9534f;
+	border-radius: 10px;
+	position: absolute;
+	margin-top: -10px;
+	margin-left: -10px
+}
+
+.notification-button:hover {
+	color:
+}
+
+.noti-dropdown {
+	padding-top: 2px;
+	font-size: 1.5rem;
+}
+
+.noti-dropdown span {
+	color: white;
+	font-size: 1rem;
+	position: absolute;
+	margin-top: -30px;
+	margin-left: 7px;
+}
+
+.noti-content {
+	font-size: 1rem;
+	color: green;
+}
+
+.media-body a {
+	text-decoration: none;
+}
+
+.notification-button:first-child {
+	color: green;
+}
+
+.error-message {
+	color: red;
+}
+</style>
+<script>
+	function excluirItemNotificacao(e) {
+		$('#item_notification_' + e.id).remove()
+	}
+	function standby(image) {
+		image.src = 'https://sophosnews.files.wordpress.com/2014/04/anonymous-250.jpg';
+		return true;
+	}
+</script>
+</head>
+
+<body ng-app="app">
+
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-primary"
+		style="background: #c5dcdd !important;">
+		<a class="navbar-brand" href="#/">BugsKiller</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#!viewJobs">Jobs</a></li>
+
+
+				<li class="nav-item dropdown" ng-hide="currentUser.role=='Admin'">
+
+					<a class="nav-link dropdown-toggle" href="" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Blog</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item dropdown-options" href="#!addBlog"
+							ng-show="currentUser.role=='User'">Add Blog</a> <a
+							class="dropdown-item dropdown-options" href="#!viewBlogs"
+							ng-click="">View Blogs</a> <a
+							class="dropdown-item dropdown-options" href="#!myBlogs"
+							ng-show="currentUser.role=='User'">My Blogs</a>
+
+					</div>
+				</li>
+
+				<li class="nav-item dropdown" ng-show="currentUser.role=='User'">
+
+					<a class="nav-link dropdown-toggle" href="" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Friend</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item dropdown-options" href="#!suggestedUsers">Suggested
+							Users</a> <a class="dropdown-item dropdown-options"
+							href="#!pendingRequests">Pending Requests</a> <a
+							class="dropdown-item dropdown-options" href="#!listOfFriends">FriendList</a>
+
+
+
+					</div>
+				</li>
+
+				<li class="nav-item dropdown" ng-show="currentUser.role=='Admin'"><a
+					class="nav-link dropdown-toggle" href="" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Admin</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item dropdown-options" href="#!allBlogs">Pending
+							Blogs</a> <a class="dropdown-item dropdown-options"
+							href="#!viewBlogs" ng-click="">Approved Blogs</a> <a
+							class="dropdown-item dropdown-options" href="#!addJob">Add a
+							job</a>
+					</div></li>
+
+				<li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+
+				<li class="nav-item"><a class="nav-link" href="#">Contact
+						Us</a></li>
+				<li class="nav-item" ng-show="currentUser!=undefined"><a
+					class="nav-link" href="#!chat">Chat </a></li>
+
+
+				<li class="dropdown noti-dropdown"
+					ng-show="currentUser.role=='User'"><a href="#"
+					class="notification-button" data-toggle="dropdown" role="button"
+					aria-haspopup="true" aria-expanded="false"><i
+						class="fa fa-bell" style="display: inline-block;"
+						aria-hidden="true"></i> <span class='notification-count	'>{{notificationCount}}</span></a>
+					<ul class="list-notificacao dropdown-menu">
+						<li id='item_notification_1'
+							ng-repeat="notification in notifications">
+							<div class="media">
+								<div class="media-left">
+									<a href="#"> <img
+										src="http://localhost:8574/CollMiddleware/getimage?email={{notification.fromUser.email}}"
+										onerror="this.src='https://sophosnews.files.wordpress.com/2014/04/anonymous-250.jpg'">
+									</a>
+								</div>
+								<div class="media-body">
+									<div class='exclusaoNotificacao'>
+										<button class='btn btn-danger btn-xs button_exclusao'
+											ng-click='excluirItemNotificacao(this)'>x</button>
+									</div>
+
+									<p>
+										<a class="noti-content" href="#!/pendingRequests">{{notification.fromUser.firstName}}
+											{{notifications.fromUser.lastName}} has sent you a friend
+											request</a>
+									</p>
+									<p ng-hide="notifications.length">You have no notifications
+									</p>
+								</div>
+							</div>
+						</li>
+
+					</ul></li>
+
+
+
+
+			</ul>
+			<ul class="nav navbar-nav" ng-show="currentUser.firstName==undefined">
+				<li class="nav-item"><a class="nav-link" href="#!login"><i
+						class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li>
+				<li class="nav-item"><a class="nav-link" href="#!signUp"><i
+						class="fa fa-user-plus" aria-hidden="true"></i>Sign Up</a></li>
+			</ul>
+			<div class="nav navbar-nav navbar-right"
+				ng-show="currentUser.firstName!=undefined" ng-controller="userCtrl">
+				<img
+					src="http://localhost:8574/CollMiddleware/getimage?email={{currentUser.email}}"
+					alt="" style="width: 43px; height: 43px; padding-right: 5px;" />
+				<div class="dropdown">
+
+					<span></span>
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false" style="color: white">Hi!
+						{{currentUser.firstName}}</button>
+
+
+
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item dropdown-options" href="#!viewProfile">View
+							Profile</a> <a class="dropdown-item dropdown-options" href=""
+							ng-click="logout()">Logout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div ng-view></div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+
+<link style="css\\SignUpCss.css" />
+<style>
+input.ng-touched.ng-invalid {
+	border: 0.5px solid red;
+	background-color: pink;
+	color: white;
+}
+
+input.ng-touched.ng-valid {
+	border: 0.5px solid green;
+}
+
+input.ng-show {
+	border: 0.5px solid red;
+}
+
+.my-cont {
+	width: 40%;
+	margin: 0 auto;
+	background-color: grey;
+}
+</style>
+<div class="container">
+
+	<div class="card bg-light my-cont">
+		<article class="card-body mx-auto" style="max-width: 400px;">
+			<h4 class="card-title mt-3 text-center">Create Account</h4>
+			<p class="text-center">Get started with your free account</p>
+
+
+			<form name="myForm" novalidate>
+			<div ng-show="myForm.firstName.$invalid && myForm.firstName.$touched">wrong</div>
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="fa fa-user"></i>
+						</span>
+					</div>
+					<input name="firstName" class="form-control"
+						placeholder="First name" type="text" ng-model="user.firstName"
+						ng-required="true">
+				</div>
+				
+
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="fa fa-user"></i>
+						</span>
+					</div>
+					<input name="" class="form-control" placeholder="Last name"
+						type="text" ng-model="user.lastName" ng-required="true">
+				</div>
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="fa fa-envelope"></i>
+						</span>
+					</div>
+					<input name="" class="form-control" placeholder="Email address"
+						type="email" ng-model="user.email" ng-required="true">
+				</div>
+				<!-- form-group// -->
+
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="fa fa-phone"></i>
+						</span>
+					</div>
+
+					<input name="" class="form-control" placeholder="Phone number"
+						type="text" ng-model="user.mobileNo" ng-required="true">
+				</div>
+				<!-- form-group// -->
+
+
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="fa fa-lock"></i>
+						</span>
+					</div>
+					<input class="form-control" placeholder="Create password"
+						type="password" ng-model="user.password" ng-required="true">
+				</div>
+				<!-- form-group// -->
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-block"
+						ng-disabled="myForm.$invalid" ng-click="registerUser()">Create Account</button>
+				</div>
+				<!-- form-group// -->
+				<p class="text-center">
+					Have an account? <a href="#!login">Log In</a>
+				</p>
+			</form>
+		</article>
+	</div>
+</div>

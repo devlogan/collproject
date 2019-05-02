@@ -1,0 +1,59 @@
+
+<div ng-show="currentUser.role!='Admin'">
+
+	<h2 align="center">you are not authorized to add a job</h2>
+</div>
+<div ng-show="currentUser.role=='Admin'" class="container">
+
+	<h3 align=center>ADD JOB</h3>
+	<form>
+		<div class="form-group">
+			<label for="jobTitle">Enter Job Title</label>
+			<div class="col-50">
+				<input type="text" class="form-control" ng-model="job.jobTitle">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Enter Job Description</label>
+			<div class="col-50">
+				<input type="text" class="form-control"
+					ng-model="job.jobDescription">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Job Location</label>
+			<div class="col-50">
+				<input type="text" class="form-control" ng-model="job.location">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Job Qualification</label>
+			<div class="col-50">
+				<input type="text" class="form-control" ng-model="job.qualifaction">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Years of experience required</label>
+			<div class="col-50">
+				<input type="text" class="form-control" ng-model="job.yrsOfExp">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Skills Required</label>
+			<div class="col-50">
+				<input type="text" class="form-control"
+					ng-model="job.skillsRequired">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Salary</label>
+			<div class="col-50">
+				<input type="text" class="form-control" ng-model="job.salary">
+			</div>
+		</div>
+
+
+		<button type="submit" ng-click="addJob()" class="btn btn-success">Add
+			Job</button>
+	</form>
+</div>

@@ -1,0 +1,69 @@
+<style>
+body {
+	background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+</style>
+<div ng-show="currentUser.role!='Admin'">
+
+	<h2 align="center">you are not authorized to add a job</h2>
+</div>
+<div ng-show="currentUser.role=='Admin'" class="container"
+	style="width: 40%">
+
+	<h3 align=center style="margin-top: 5%">ADD JOB</h3>
+	<form name="jobForm" novalidate>
+		<div class="form-group">
+			<label for="jobTitle">Enter Job Title</label>
+			<div class="col-50">
+				<input type="text" class="form-control" ng-model="job.jobTitle"
+					ng-required="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Enter Job Description</label>
+			<div class="col-50">
+				<input type="text" class="form-control"
+					ng-model="job.jobDescription" ng-required="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Job Location</label>
+			<div class="col-50">
+				<input type="text" class="form-control" ng-model="job.location"
+					ng-required="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Job Qualification</label>
+			<div class="col-50">
+				<input type="text" class="form-control" ng-model="job.qualifaction"
+					ng-required="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Years of experience required</label>
+			<div class="col-50">
+				<input type="text" class="form-control" ng-model="job.yrsOfExp"
+					ng-required="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Skills Required</label>
+			<div class="col-50">
+				<input type="text" class="form-control"
+					ng-model="job.skillsRequired ng-required="true"">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Salary</label>
+			<div class="col-50">
+				<input type="text" class="form-control" ng-model="job.salary"
+					ng-required="true">
+			</div>
+		</div>
+
+
+		<button type="submit" ng-click="addJob()" class="btn btn-success">Add
+			Job</button>
+	</form>
+</div>

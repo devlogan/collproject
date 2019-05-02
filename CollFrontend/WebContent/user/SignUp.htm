@@ -1,0 +1,157 @@
+
+<link style="css\\SignUpCss.css" />
+<style>
+input.ng-touched.ng-invalid {
+	border: 0.5px solid red;
+	background-color: pink;
+	color: white;
+}
+
+input.ng-touched.ng-invalid {
+	border: 0.5px solid red;
+	background-color: pink;
+	color: white;
+}
+
+input.ng-touched.ng-valid {
+	border: 0.5px solid green;
+}
+
+input.ng-show {
+	border: 0.5px solid red;
+}
+
+.my-cont {
+	width: 40%;
+	margin: 0 auto;
+	background-color: grey;
+}
+
+i.fa-check {
+	margin-left: 10px;
+	font-size: 1.5rem;
+	position: relative;
+	color: green;
+}
+
+i.fa-close {
+	margin-left: 10px;
+	font-size: 1.5rem;
+	position: relative;
+	color: red;
+}
+
+body {
+	background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+</style>
+<div class="container">
+
+	<div class="card bg-light my-cont">
+		<article class="card-body mx-auto" style="max-width: 400px;">
+			<h4 class="card-title mt-3 text-center">Create Account</h4>
+			<p class="text-center">Get started with your free account</p>
+			<p class="text-center" style="color: red;">{{error.message}}</p>
+
+
+			<form name="myForm" novalidate>
+				<div class="error-message"
+					ng-show="myForm.firstName.$invalid && myForm.firstName.$touched">First
+					Name is Required(only ch.)</div>
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="fa fa-user"></i>
+						</span>
+					</div>
+					<input name="firstName" class="form-control"
+						placeholder="First name" type="text" ng-model="user.firstName"
+						ng-required="true" ng-pattern="/^[A-Z]+$/i" ng-minlength="3"
+						ng-maxlength="21"><i ng-show="myForm.firstName.$valid"
+						class="fa fa-check"></i><i
+						ng-show="myForm.firstName.$invalid && myForm.firstName.$touched || myForm.firstName.$error.pattern && myForm.firstName.$touched"
+						class="fa fa-close"></i>
+				</div>
+
+
+				<div class="error-message"
+					ng-show="myForm.lastName.$invalid && myForm.lastName.$touched">Last
+					Name is Required(only ch.)</div>
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="fa fa-user"></i>
+						</span>
+					</div>
+					<input name="lastName" class="form-control" placeholder="Last name"
+						type="text" ng-model="user.lastName" ng-required="true"
+						ng-pattern="/^[A-Z]+$/i" ng-minlength="3" ng-maxlength="21"><i
+						ng-show="myForm.lastName.$valid" class="fa fa-check"></i><i
+						ng-show="myForm.lastName.$invalid && myForm.lastName.$touched || myForm.lastName.$error.pattern && myForm.lastName.$touched"
+						class="fa fa-close"></i>
+				</div>
+				<div class="error-message"
+					ng-show="myForm.email.$invalid && myForm.email.$touched">Email
+					is Required</div>
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="fa fa-envelope"></i>
+						</span>
+					</div>
+					<input name="email" class="form-control"
+						placeholder="Email address" type="email" ng-model="user.email"
+						ng-required="true"><i ng-show="myForm.email.$valid"
+						class="fa fa-check"></i><i
+						ng-show="myForm.email.$invalid && myForm.email.$touched"
+						class="fa fa-close"></i>
+				</div>
+				<!-- form-group// -->
+				<div class="error-message"
+					ng-show="myForm.phone.$invalid && myForm.phone.$touched">Phone
+					Number is Required</div>
+				<div class="error-message"
+					ng-show="myForm.phone.$error.pattern && myForm.phone.$touched">Enter
+					a 10 digit number</div>
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="fa fa-phone"></i>
+						</span>
+					</div>
+
+					<input name="phone" class="form-control" placeholder="Phone number"
+						type="text" ng-model="user.mobileNo" ng-required="true"
+						ng-pattern="/^\d{10}$/"><i ng-show="myForm.phone.$valid"
+						class="fa fa-check"></i><i
+						ng-show="myForm.phone.$invalid && myForm.phone.$touched"
+						class="fa fa-close"></i>
+				</div>
+				<!-- form-group// -->
+
+				<div class="error-message"
+					ng-show="myForm.password.$invalid && myForm.password.$touched">Password
+					is Required</div>
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="fa fa-lock"></i>
+						</span>
+					</div>
+					<input name="password" class="form-control"
+						placeholder="Create password" type="password"
+						ng-model="user.password" ng-required="true" ng-minlength="5"><i
+						ng-show="myForm.password.$valid" class="fa fa-check"></i><i
+						ng-show="myForm.password.$invalid && myForm.password.$touched"
+						class="fa fa-close"></i>
+				</div>
+				<!-- form-group// -->
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-block"
+						ng-disabled="myForm.$invalid" ng-click="registerUser()">Create
+						Account</button>
+				</div>
+				<!-- form-group// -->
+				<p class="text-center">
+					Have an account? <a href="#!login">Log In</a>
+				</p>
+			</form>
+		</article>
+	</div>
+</div>

@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="ISO-8859-1">
+<title>Blogs</title>
+</head>
+<!--  <style>
+	* {
+		color: white;
+	}
+	</style>-->
+<script>
+	
+</script>
+<body ng-controller="blogOperCtrl">
+	<div ng-init="getBlogsApproved()">
+		<div class="container" ng-repeat="blog in approvedBlogs"
+			style="margin-top: 30px">
+			<h4>
+				<a href="#!blogDetails/{{blog.blogsId}}">{{blog.blogName}}</a>
+			</h4>
+			<h6>Posted By: {{blog.userName}}</h6>
+			<span>{{blog.date}}</span>
+			<div>
+				<a href="" ng-click="likeBlog(blog.blogsId)"><i
+					class="fa fa-thumbs-up"></i></a><span style="margin-right: 8px;"><a
+					href="">{{blog.likes}}</a></span><a href=""
+					ng-click="dislikeBlog(blog.blogsId)"><i
+					class="fa fa-thumbs-down"></i></a><span><a href="">{{blog.dislikes}}</a></span>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

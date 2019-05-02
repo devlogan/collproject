@@ -1,0 +1,13 @@
+INDEX VERSION 1.131
+C:\Users\Dev\secondProject\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2309367965.index
+\CollMiddleware\src\main\java
+C:\Users\Dev\secondProject\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2311978676.index
+\CollaborationMiddleware\src\main\resources
+C:\Users\Dev\second-project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\478293830.index
+\CollMiddleware\src\main\java
+C:\Users\Dev\secondProject\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1423728783.index
+\CollaborationMiddleware\src\main\java
+C:\Users\Dev\secondProject\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3155139563.index
+\CollMiddleware\src\main\java
+C:\Users\Dev\secondProject\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\478293830.index
+\CollMiddleware\src\main\resources

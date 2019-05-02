@@ -1,0 +1,35 @@
+<style>
+body {
+	background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+
+.login-box {
+	margin-top: 60px;
+	width: 30%;
+	border: 1px solid lightgray;
+	padding-bottom: 1%;
+}
+
+.signin-button {
+	margin-left: 41%;
+}
+</style>
+<div class="container login-box">
+
+	<h2 style="text-align: center;">Login</h2>
+	<div style="color: red;">{{error.message}}</div>
+	<form ng-submit="loginUser()">
+		<div class="form-group">
+			<label for="email">Email:</label> <input type="email"
+				class="form-control" id="email" placeholder="Enter email"
+				name="email" data-ng-model="user.email" required>
+		</div>
+		<div class="form-group">
+			<label for="password">Password:</label> <input type="password"
+				class="form-control" id="password" placeholder="Enter Password"
+				name="password" data-ng-model="user.password" ng-required>
+		</div>
+
+		<button type="submit" class="btn btn-default signin-button">SignIn</button>
+	</form>
+</div>
